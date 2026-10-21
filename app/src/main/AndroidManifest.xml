@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppTrueFalse">
         <activity
-            android:name=".Buzz"
+            android:name=".menuPrincipal"
             android:exported="true"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
@@ -22,14 +22,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".menuPrincipal"
-            android:exported="true"
+            android:name=".Buzz"
+            android:exported="false"
             android:windowSoftInputMode="adjustResize">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".Stats"

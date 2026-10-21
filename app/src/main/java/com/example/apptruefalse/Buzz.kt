@@ -72,7 +72,6 @@ class Buzz : AppCompatActivity() {
 
         if(File(filesDir, "preguntas.txt").exists()) {
             leerArchivo()
-            preguntaTexto.text = listaPreguntas[contador].texto
         }
         else{
             botonFalse.isEnabled = false
@@ -101,7 +100,19 @@ class Buzz : AppCompatActivity() {
                     botonTrue.backgroundTintList = colorOriginal
                     botonFalse.backgroundTintList = colorOriginal
                 }
+            else
+            {
+                if(listaPreguntas[contador].resultado)
+                {
+                    colorBotonesTrue()
+                }
+                else
+                {
+                    colorBotonesFalse()
+                }
+            }
         }
+
 
         if (modoDificil) {
             if (savedInstanceState == null) {
@@ -110,6 +121,7 @@ class Buzz : AppCompatActivity() {
                 timerModoDificil(tiempoRestante)
             }
         }
+        if(listaPreguntas.isNotEmpty()) preguntaTexto.text = listaPreguntas[contador].texto
 
         botonFalse.setOnClickListener(trueOrFalse)
         botonTrue.setOnClickListener(trueOrFalse)
@@ -247,11 +259,11 @@ class Buzz : AppCompatActivity() {
     fun timerModoDificil(duracion: Long = 15000){
         //primero cancelo el que ya existe por si le doy a next/back/random y luego creo el otro
             countDownTimer?.cancel()
-            countDownTimer = object : CountDownTimer(15000, 1000) {
+            countDownTimer = object : CountDownTimer(duracion, 1000) {
 
-                override fun onTick(millisUntilFinished: Long) {
-                    timer.setText("Te quedan " + millisUntilFinished / 1000  + " segundos para responder.")
-                    tiempoRestante = millisUntilFinished
+                override fun onTick(duracion: Long) {
+                    timer.setText("Te quedan " + duracion / 1000  + " segundos para responder.")
+                    tiempoRestante = duracion
                 }
 
                 override fun onFinish() {
