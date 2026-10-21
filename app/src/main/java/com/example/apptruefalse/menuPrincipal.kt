@@ -87,5 +87,6 @@ class menuPrincipal : AppCompatActivity() {
             val iramas = Intent(this, SumarPreguntas::class.java)
             startActivity(iramas)
         }
+
     }
 }

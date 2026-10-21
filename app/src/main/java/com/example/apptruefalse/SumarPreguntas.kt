@@ -57,26 +57,24 @@ class SumarPreguntas : AppCompatActivity() {
 
     val clickBotonMas = object : View.OnClickListener {
         override fun onClick(view: View) {
-            if(view.id == R.id.botonmas)
-            {
+            if (view.id == R.id.botonmas) {
                 preguntaSumada = nuevaPregunta.text.toString()
-                if(checkTrue.isChecked) respuestaSumada = true
-                if(checkFalse.isChecked) respuestaSumada = false
-                if(nuevaPregunta.text.isBlank())
-                {
+                if (checkTrue.isChecked) respuestaSumada = true
+                if (checkFalse.isChecked) respuestaSumada = false
+                if (nuevaPregunta.text.isBlank()) {
                     textoError.text = "Debes escribir la pregunta."
-                }
-                else if (!checkFalse.isChecked && !checkTrue.isChecked)
-                {
+                } else if (!checkFalse.isChecked && !checkTrue.isChecked) {
                     textoError.text = "Debes marcar la respuesta."
-                }
-                else
-                {
+                } else {
                     archivoEscribir = FileOutputStream(File(filesDir, "preguntas.txt"), true)
                     var linea = preguntaSumada + ";" + respuestaSumada + "\n"
                     archivoEscribir.write(linea.toByteArray())
                     archivoEscribir.close()
-                    Toast.makeText(this@SumarPreguntas, "Tu pregunta se ha guardado con éxito :)", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        this@SumarPreguntas,
+                        "Tu pregunta se ha guardado con éxito :)",
+                        Toast.LENGTH_SHORT
+                    ).show()
                     nuevaPregunta.setText("")
                     checkTrue.isChecked = false
                     checkFalse.isChecked = false
