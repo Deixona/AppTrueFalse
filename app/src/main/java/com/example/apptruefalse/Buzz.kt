@@ -6,6 +6,7 @@ import android.graphics.Color.GREEN
 import android.graphics.Color.RED
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.os.PersistableBundle
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
@@ -32,11 +33,14 @@ class Buzz : AppCompatActivity() {
     lateinit var respuesta: TextView
     lateinit var botonInicio: Button
     lateinit var timer: TextView
+
     // aquí no puedo usar lateinit porque por algún motivo si pongo ColorStateList sin que sea nullable abajo no se asigna bien pero lateinit no permite nullables, así que directamente
     // lo inicializo null y abajo después de iniciar los botones le asigno el color.
     // todo esto es para que cuando le de a back/random/next el color vuelva a ser el del resto de botones por qué este comentario es verde??
     var colorOriginal: ColorStateList? = null
     var countDownTimer: CountDownTimer? = null
+    var tiempoRestante: Long = 0
+    var respondida: Boolean = false
 
     //ESTAS VARIABLES SON PARA HACER EL RECUENTO PARA LAS STATS.
     //Óliver me estoy haciendo un lío así que voy a comentar esto como si fuera bobo porque me pierdo con todos los cambios que le he hecho a esto
@@ -84,9 +88,27 @@ class Buzz : AppCompatActivity() {
         clicks = intent.getIntExtra("clicks", clicks)
         modoDificil = intent.getBooleanExtra("modo", false)
 
-        if(modoDificil)
-        {
-            timerModoDificil()
+        if (savedInstanceState != null) {
+            contador = savedInstanceState.getInt("contador")
+            aciertos = savedInstanceState.getInt("aciertos")
+            fallos = savedInstanceState.getInt("fallos")
+            clicks = savedInstanceState.getInt("clicks")
+            tiempoRestante = savedInstanceState.getLong("tiempoRestante")
+            respondida = savedInstanceState.getBoolean("respondida")
+            respuesta.text = savedInstanceState.getString("textoRespuesta")
+            if (respondida == false)
+                {
+                    botonTrue.backgroundTintList = colorOriginal
+                    botonFalse.backgroundTintList = colorOriginal
+                }
+        }
+
+        if (modoDificil) {
+            if (savedInstanceState == null) {
+                timerModoDificil()
+            } else if (!respondida) {
+                timerModoDificil(tiempoRestante)
+            }
         }
 
         botonFalse.setOnClickListener(trueOrFalse)
@@ -127,6 +149,9 @@ class Buzz : AppCompatActivity() {
                 botonTrue.backgroundTintList = colorOriginal
                 botonFalse.backgroundTintList = colorOriginal
                 if (modoDificil) timerModoDificil()
+                botonTrue.isEnabled = true
+                botonFalse.isEnabled = true
+                respondida = false
             }
         }
     }
@@ -146,6 +171,9 @@ class Buzz : AppCompatActivity() {
                 botonTrue.backgroundTintList = colorOriginal
                 botonFalse.backgroundTintList = colorOriginal
                 if (modoDificil) timerModoDificil()
+                botonTrue.isEnabled = true
+                botonFalse.isEnabled = true
+                respondida = false
             }
         }
     }
@@ -161,6 +189,9 @@ class Buzz : AppCompatActivity() {
                 botonTrue.backgroundTintList = colorOriginal
                 botonFalse.backgroundTintList = colorOriginal
                 if (modoDificil) timerModoDificil()
+                botonTrue.isEnabled = true
+                botonFalse.isEnabled = true
+                respondida = false
             }
         }
     }
@@ -191,6 +222,7 @@ class Buzz : AppCompatActivity() {
                 clicks++
             }
             countDownTimer?.cancel()
+            respondida = true
         }
     }
 
@@ -212,13 +244,14 @@ class Buzz : AppCompatActivity() {
         botonTrue.backgroundTintList = ColorStateList.valueOf(RED)
         botonFalse.backgroundTintList = ColorStateList.valueOf(GREEN)
     }
-    fun timerModoDificil(){
+    fun timerModoDificil(duracion: Long = 15000){
         //primero cancelo el que ya existe por si le doy a next/back/random y luego creo el otro
             countDownTimer?.cancel()
             countDownTimer = object : CountDownTimer(15000, 1000) {
 
                 override fun onTick(millisUntilFinished: Long) {
                     timer.setText("Te quedan " + millisUntilFinished / 1000  + " segundos para responder.")
+                    tiempoRestante = millisUntilFinished
                 }
 
                 override fun onFinish() {
@@ -250,4 +283,16 @@ class Buzz : AppCompatActivity() {
                 }
             }
         }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putInt("contador", contador)
+        outState.putInt("aciertos", aciertos)
+        outState.putInt("fallos", fallos)
+        outState.putInt("clicks", clicks)
+        outState.putLong("tiempoRestante", tiempoRestante)
+        outState.putBoolean("respondida", respondida)
+        outState.putString("textoRespuesta", respuesta.text.toString())
+    }
+
 }
