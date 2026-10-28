@@ -1,3 +1,13 @@
 <resources>
-    <string name="app_name">AppTrueFalse</string>
+    <string name="botontrue">Verdadero</string>
+    <string name="botonfalse">Falso</string>
+    <string name="botonnext">Siguiente</string>
+    <string name="botonback">Atrás</string>
+    <string name="botonrandom">Pregunta aleatoria</string>
+    <string name="botoninicio">Inicio</string>
+    <string name="respuestacorrecta">¡Correcto!</string>
+    <string name="respuestaincorrecta">Incorrecto. Vuelve a intentarlo.</string>
+    <string name="tiemporestante1">Te quedan  </string>
+    <string name="tiemporestante2"> segundos para responder.</string>
+    <string name="nopregunta">Todavía no hay preguntas guardadas. Guarda primero una pregunta.</string>
 </resources>

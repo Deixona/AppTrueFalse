@@ -6,4 +6,25 @@
     </style>
 
     <style name="Theme.AppTrueFalse" parent="Base.Theme.AppTrueFalse" />
+
+    <style name="Wrap">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="TextoCentrado" parent="Wrap">
+        <item name="android:textAlignment">center</item>
+    </style>
+
+    <style name="TextoPregunta" parent="TextoCentrado">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/alturapregunta</item>
+    </style>
+
+    <style name="BotonIcono">
+        <item name="android:layout_width">@dimen/tamañoicono</item>
+        <item name="android:layout_height">@dimen/tamañoicono</item>
+        <item name="android:scaleType">fitCenter</item>
+        <item name="android:background">@color/transparent</item>
+    </style>
 </resources>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="tamañoicono">20dp</dimen>
+    <dimen name="alturapregunta">30dp</dimen>
+    <dimen name="margenpregunta">25dp</dimen>
+    <dimen name="margenrespuesta">30dp</dimen>
+</resources>
