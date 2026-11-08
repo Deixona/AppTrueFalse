@@ -57,7 +57,7 @@
         android:id="@+id/textoimagen"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:text="sjdkasdjkasd"
+        android:text=""
         android:textAlignment="center"
 
         app:layout_constraintEnd_toEndOf="parent"

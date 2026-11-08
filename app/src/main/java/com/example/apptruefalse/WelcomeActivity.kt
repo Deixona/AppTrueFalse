@@ -34,6 +34,8 @@ class WelcomeActivity : AppCompatActivity() {
         }
         val usuario = intent.getStringExtra("usuario")
 
+        GestorMusicaBackground.iniciar(this, R.raw.bandasonora)
+
         botonJuego = findViewById<Button>(R.id.botonjuego)
         botonMapas = findViewById<Button>(R.id.botonmapas)
         botonMapaInteractivo = findViewById<Button>(R.id.botonmapainteractivo)
@@ -48,73 +50,45 @@ class WelcomeActivity : AppCompatActivity() {
         botonMapaInteractivo.setOnClickListener(clickBoton)
 
         textoBienvenida.text = "¡Bienvenid@, " + usuario + "!"
-        var puntoActual = intent.getIntExtra("musica", 0)
-        reproductorMusicaFondo(R.raw.bandasonora)
-        reproductorMusica?.seekTo(puntoActual)
-        reproductorMusica?.start()
-
-
     }
 
     val clickBoton = object : View.OnClickListener {
         override fun onClick(view: View) {
             if (view.id == R.id.botonjuego) {
                 val intentJuego = Intent(this@WelcomeActivity, menuPrincipal::class.java)
-                liberarReproductor()
                 startActivity(intentJuego)
             }
 
             if (view.id == R.id.musica)
             {
-                reproductorMusica?.let { reproductor ->
-                    if(reproductor.isPlaying)
-                    {
-                        reproductor.pause()
-                        botonMusica.setImageResource(R.drawable.altavozmuteado)
-                    }
-                    else
-                    {
-                        reproductor.start()
-                        botonMusica.setImageResource(R.drawable.altavozsonando)
-                    }
+                if(GestorMusicaBackground.estaSonando())
+                {
+                    GestorMusicaBackground.pausar()
+                    botonMusica.setImageResource(R.drawable.altavozmuteado)
+                }
+                else
+                {
+                    GestorMusicaBackground.reanudar()
+                    botonMusica.setImageResource(R.drawable.altavozsonando)
                 }
             }
 
             if (view.id == R.id.botonmunicipio) {
                 val intentMapas = Intent(this@WelcomeActivity, GaleriaImagen::class.java)
                 intentMapas.putExtra("musica", reproductorMusica?.currentPosition)
-                liberarReproductor()
                 startActivity(intentMapas)
             }
 
             if (view.id == R.id.botonmapas) {
                 val intentMapas = Intent(this@WelcomeActivity, MapaActivity::class.java)
-                liberarReproductor()
                 startActivity(intentMapas)
             }
 
             if (view.id == R.id.botonmapainteractivo) {
                 val intentMapasInterac = Intent(this@WelcomeActivity, MapaInteractivoActivity::class.java)
-                liberarReproductor()
                 startActivity(intentMapasInterac)
             }
         }
     }
-
-    fun reproductorMusicaFondo(sonido: Int) {
-        reproductorMusica?.release()
-        reproductorMusica = null
-        reproductorMusica = MediaPlayer.create(this, sonido)
-        reproductorMusica?.setOnCompletionListener {
-            liberarReproductor()
-        }
-        reproductorMusica?.start()
-        reproductorMusica?.isLooping = true
-    }
-    fun liberarReproductor() {
-        reproductorMusica?.release()
-        reproductorMusica = null
-    }
-
 }
 

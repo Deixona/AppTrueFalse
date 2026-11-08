@@ -66,31 +66,12 @@ class GaleriaImagen : AppCompatActivity() {
         imagenDerecha.setImageResource(listaImagenes[1].imagen)
         imagenIzquierda.setImageResource(listaImagenes[listaImagenes.size -1].imagen)
 
-        var puntoActual = intent.getIntExtra("musica", 0)
-        reproductorMusicaFondo(R.raw.bandasonora)
-        reproductorMusica?.seekTo(puntoActual)
-        reproductorMusica?.start()
-
         nextButton.setOnClickListener(clickBoton)
         prevButton.setOnClickListener(clickBoton)
         atrasBoton.setOnClickListener(clickBoton)
         botonMusica.setOnClickListener(clickBoton)
 
 
-    }
-
-
-    fun reproductorMusicaFondo(sonido: Int) {
-        reproductorMusica = MediaPlayer.create(this, sonido)
-        reproductorMusica?.setOnCompletionListener {
-            liberarReproductor()
-        }
-        reproductorMusica?.isLooping = true
-    }
-
-    fun liberarReproductor() {
-        reproductorMusica?.release()
-        reproductorMusica = null
     }
 
     val clickBoton = object : View.OnClickListener {
@@ -120,23 +101,20 @@ class GaleriaImagen : AppCompatActivity() {
             {
                 val irainicio = Intent(this@GaleriaImagen, WelcomeActivity::class.java)
                 irainicio.putExtra("musica", reproductorMusica?.currentPosition)
-                liberarReproductor()
                 startActivity(irainicio)
             }
 
             if (view.id == R.id.musica)
             {
-                reproductorMusica?.let { reproductor ->
-                    if(reproductor.isPlaying)
-                    {
-                        reproductor.pause()
-                        botonMusica.setImageResource(R.drawable.altavozmuteado)
-                    }
-                    else
-                    {
-                        reproductor.start()
-                        botonMusica.setImageResource(R.drawable.altavozsonando)
-                    }
+                if(GestorMusicaBackground.estaSonando())
+                {
+                    GestorMusicaBackground.pausar()
+                    botonMusica.setImageResource(R.drawable.altavozmuteado)
+                }
+                else
+                {
+                    GestorMusicaBackground.reanudar()
+                    botonMusica.setImageResource(R.drawable.altavozsonando)
                 }
             }
         }

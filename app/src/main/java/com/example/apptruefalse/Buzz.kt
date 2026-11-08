@@ -111,13 +111,6 @@ class Buzz : AppCompatActivity() {
 
         if (File(filesDir, "preguntas.txt").exists()) {
             leerArchivo()
-        } else {
-            botonFalse.isEnabled = false
-            botonTrue.isEnabled = false
-            botonBack.isEnabled = false
-            botonNext.isEnabled = false
-            botonRandom.isEnabled = false
-            preguntaTexto.text = getString(R.string.nopregunta)
         }
         //Aquí hago que recoja el valor que pasa el launcher del menú principal pa que siga contando si salgo y entro más de una vez
         aciertos = intent.getIntExtra("aciertos", aciertos)
@@ -284,6 +277,7 @@ class Buzz : AppCompatActivity() {
                 if (modoDificil) timerModoDificil()
                 reiniciarEstados()
                 mostrarReproductor()
+                if(listaPreguntas[contador].sonido == null) GestorMusicaBackground.subirVolumen()
             }
         }
     }
@@ -302,6 +296,7 @@ class Buzz : AppCompatActivity() {
                 if (modoDificil) timerModoDificil()
                 reiniciarEstados()
                 mostrarReproductor()
+                if(listaPreguntas[contador].sonido == null) GestorMusicaBackground.subirVolumen()
             }
         }
     }
@@ -317,6 +312,7 @@ class Buzz : AppCompatActivity() {
                 if (modoDificil) timerModoDificil()
                 reiniciarEstados()
                 mostrarReproductor()
+                if(listaPreguntas[contador].sonido == null) GestorMusicaBackground.subirVolumen()
             }
         }
     }
@@ -498,6 +494,7 @@ class Buzz : AppCompatActivity() {
 
     fun mostrarReproductor() {
         if(listaPreguntas[contador].sonido != null) {
+            GestorMusicaBackground.bajarVolumen()
             grupoReproductor.visibility = View.VISIBLE
             crearReproductorPreguntas()
             play.setImageResource(R.drawable.play)
