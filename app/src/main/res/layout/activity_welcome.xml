@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".WelcomeActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/bienvenida"
+        android:layout_marginTop="20dp"
+        android:textSize="30sp"
+        android:text="San Cristóbal de La Laguna"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <ImageView
+        android:id="@+id/imagenmunicipio"
+        android:layout_width="300dp"
+        android:layout_height="400dp"
+        android:src="@drawable/lalaguna"
+        android:layout_marginTop="10dp"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/bienvenida"/>
+
+    <TextView
+        android:id="@+id/descripcionmunicipio"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:text="@string/descripcionlalaguna"
+
+        app:layout_constraintTop_toBottomOf="@id/imagenmunicipio"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/botonjuego"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/botonjuego"
+        android:text="@string/pok_mon_quiz"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/descripcionmunicipio"
+        app:layout_constraintEnd_toStartOf="@id/botonmunicipio"
+        app:layout_constraintBottom_toTopOf="@id/botonmapas"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/botonmunicipio"
+        android:text="@string/accede_al_municipio"
+
+        app:layout_constraintStart_toEndOf="@id/botonjuego"
+        app:layout_constraintTop_toTopOf="@id/botonjuego"
+        app:layout_constraintBottom_toBottomOf="@id/botonjuego"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/botonmapas"
+        android:text="@string/accede_al_mapa"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/botonjuego"
+        app:layout_constraintEnd_toStartOf="@id/botonmapainteractivo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/botonmapainteractivo"
+        android:text="@string/accede_al_mapa_interactivo"
+
+        app:layout_constraintStart_toEndOf="@id/botonmapas"
+        app:layout_constraintTop_toTopOf="@id/botonmapas"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/botonmapas"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+    <ImageButton
+        android:id="@+id/musica"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="fitCenter"
+        android:src="@drawable/altavozsonando"
+
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHeight="40dp"
+        app:layout_constraintWidth="40dp"
+        />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

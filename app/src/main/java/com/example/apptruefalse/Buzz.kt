@@ -79,16 +79,16 @@ class Buzz : AppCompatActivity() {
             insets
         }
 
-        listaPreguntas.add(Pregunta("¿El tipo agua es débil al tipo fuego?", false, null))
-        listaPreguntas.add(Pregunta("¿Wartortle evoluciona a Squirtle?", false, null))
-        listaPreguntas.add(Pregunta("¿Actualmente hay más de 5 generaciones de Pokémon?",true,null))
-        listaPreguntas.add(Pregunta("¿Existen 18 tipos de Pokémon?", true, null))
-        listaPreguntas.add(Pregunta("¿Existen más de 5 generaciones de Pokémon?", true, null))
-        listaPreguntas.add(Pregunta("¿Este sonido pertenece a Pikachu?", false, R.raw.pikachu))
-        listaPreguntas.add(Pregunta("¿Es este el opening de la primera generación de Pokémon?",false,R.raw.giveuup))
-        listaPreguntas.add(Pregunta("¿Este sonido pertenece a una Pokéball?", true, R.raw.pokebol))
-        listaPreguntas.add(Pregunta("¿Dirías que este sonido se corresponde con algún Pokémon?",false,R.raw.cupcake))
-        listaPreguntas.add(Pregunta("¿Pertenece este sonido al videojuego Pokémon Edición Negro 2?",false,R.raw.mamamia))
+        listaPreguntas.add(Pregunta("¿El tipo agua es débil al tipo fuego?", false, null, null))
+        listaPreguntas.add(Pregunta("¿Wartortle evoluciona a Squirtle?", false, null, null))
+        listaPreguntas.add(Pregunta("¿Actualmente hay más de 5 generaciones de Pokémon?",true,null, null))
+        listaPreguntas.add(Pregunta("¿Existen 18 tipos de Pokémon?", true, null, null))
+        listaPreguntas.add(Pregunta("¿Existen más de 5 generaciones de Pokémon?", true, null, null))
+        listaPreguntas.add(Pregunta("¿Este sonido pertenece a Pikachu?", false, R.raw.pikachu, "https://www.wikidex.net/wiki/Pikachu"))
+        listaPreguntas.add(Pregunta("¿Es este el opening de la primera generación de Pokémon?",false,R.raw.giveuup, "https://www.youtube.com/watch?v=wvy-pO65GhQ"))
+        listaPreguntas.add(Pregunta("¿Este sonido pertenece a una Pokéball?", true, R.raw.pokebol, "https://www.youtube.com/watch?v=kAmkLHLTeE0"))
+        listaPreguntas.add(Pregunta("¿Dirías que este sonido se corresponde con algún Pokémon?",false,R.raw.cupcake, "https://www.youtube.com/watch?v=jSEX9-s7ljA"))
+        listaPreguntas.add(Pregunta("¿Pertenece este sonido al videojuego Pokémon Edición Negro 2?",false,R.raw.mamamia, "https://www.youtube.com/watch?v=TGdIauaEFZA"))
 
         preguntaTexto = findViewById<TextView>(R.id.pregunta)
         botonTrue = findViewById<Button>(R.id.botontrue)
@@ -165,7 +165,7 @@ class Buzz : AppCompatActivity() {
         botonRandom.setOnClickListener(clickBotonRandom)
         play.setOnClickListener(clickPlay)
         loop.setOnClickListener(clickLoop)
-        //botonWeb.setOnClickListener(clickBotonWeb)
+        botonWeb.setOnClickListener(clickBotonWeb)
 
 
         barraReproductor.setOnSeekBarChangeListener(object: SeekBar.OnSeekBarChangeListener {
@@ -257,17 +257,17 @@ class Buzz : AppCompatActivity() {
         play.setImageResource(R.drawable.play)
     }
 
-   // val clickBotonWeb = object : View.OnClickListener {
-  //      override fun onClick (view:View) {
-   //         if (view.id == R.id.botonweb)
-   //         {
-   //             listaPreguntas[contador].enlace?.let{ url ->
-   //                 val intentWeb = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-                        //startActivity(intentWeb)
-   ////             }
-   //         }
-   //     }
-  //  }
+   val clickBotonWeb = object : View.OnClickListener {
+        override fun onClick (view:View) {
+            if (view.id == R.id.botonweb)
+            {
+                listaPreguntas[contador].enlace?.let{ url ->
+                    val intentWeb = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                        startActivity(intentWeb)
+                }
+            }
+        }
+    }
 
     val clickBotonNext = object : View.OnClickListener {
         override fun onClick(view : View) {
@@ -369,6 +369,8 @@ class Buzz : AppCompatActivity() {
             }
         }.start()
     }
+
+
     fun leerArchivo() {
         archivoLeer = FileInputStream(File(filesDir, "preguntas.txt"))
         //primero leo todo el archivo y lo meto en un string
@@ -380,10 +382,12 @@ class Buzz : AppCompatActivity() {
         for (x in lineas) {
             if (x.isNotBlank()) {
                 val partes = x.split(";")
-                listaPreguntas.add(Pregunta(partes[0], partes[1].toBoolean(), null))
+                listaPreguntas.add(Pregunta(partes[0], partes[1].toBoolean(), null, null))
             }
         }
     }
+
+
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putInt("contador", contador)
@@ -394,6 +398,8 @@ class Buzz : AppCompatActivity() {
         outState.putBoolean("respondida", respondida)
         outState.putString("textoRespuesta", respuesta.text.toString())
     }
+
+
     fun reproducirSonidoEfectos(sonido: Int) {
         reproductorEfectos?.release()
         reproductorEfectos = null
@@ -404,6 +410,8 @@ class Buzz : AppCompatActivity() {
         }
         reproductorEfectos?.start()
     }
+
+
     fun crearReproductorPreguntas() {
         reproductorPreguntas?.release()
         reproductorPreguntas = null
@@ -419,22 +427,24 @@ class Buzz : AppCompatActivity() {
             reproductorPreguntas?.isLooping = loopActivado
         }
     }
+
+
     val clickPlay = object : View.OnClickListener {
         override fun onClick(view: View) {
             if (view.id == R.id.playopause) {
-             if (reproductorPreguntas?.isPlaying == true) {
+                if (reproductorPreguntas?.isPlaying == true) {
                     play.setImageResource(R.drawable.play)
                     reproductorPreguntas?.pause()
-                 handler.removeCallbacks(actualizarBarra)
+                    handler.removeCallbacks(actualizarBarra)
                 } else {
                     play.setImageResource(R.drawable.pause)
                     reproductorPreguntas?.start()
-                 handler.removeCallbacks(actualizarBarra)
-                 handler.post(actualizarBarra)
-            }
+                    handler.removeCallbacks(actualizarBarra)
+                    handler.post(actualizarBarra)
+                }
 
+            }
         }
-    }
     }
     fun barraReproductorFunc()
     {

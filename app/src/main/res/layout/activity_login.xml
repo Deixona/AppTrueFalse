@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textologin"
+        android:text="Inicio de sesión"
+
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/usertext"
+        android:text = "Usuario:"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textologin"
+        app:layout_constraintEnd_toStartOf="@+id/campouser"
+        />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/campouser"
+
+        app:layout_constraintStart_toEndOf="@+id/usertext"
+        app:layout_constraintTop_toTopOf="@+id/usertext"
+        app:layout_constraintBottom_toBottomOf="@+id/usertext"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/passtext"
+        android:text = "Contraseña"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/usertext"
+        app:layout_constraintEnd_toStartOf="@id/campopass"
+        />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/campopass"
+        android:inputType="textPassword"
+
+        app:layout_constraintStart_toEndOf="@+id/passtext"
+        app:layout_constraintTop_toTopOf="@+id/passtext"
+        app:layout_constraintBottom_toBottomOf="@+id/passtext"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/botonlogin"
+        android:text="Iniciar sesión"
+
+        app:layout_constraintTop_toBottomOf="@+id/passtext"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textoerror"
+        android:text=""
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/botonlogin"
+        />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

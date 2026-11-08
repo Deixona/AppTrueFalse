@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MapaInteractivoActivity">
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/botonañadir"
+        android:text="@string/a_adir_marcador"
+
+        app:layout_constraintBottom_toTopOf="@id/mapa"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/eliminarseleccion"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/eliminarseleccion"
+        android:text="@string/eliminar_seleccion"
+
+        app:layout_constraintBottom_toTopOf="@id/mapa"
+        app:layout_constraintTop_toTopOf="@id/botonañadir"
+        app:layout_constraintStart_toEndOf="@id/botonañadir"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/nombremarcador"
+        android:hint="@string/introduce_el_nombre_del_marcador"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/mapa"
+        app:layout_constraintBottom_toTopOf="@id/descripcionmarcador"
+        />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/descripcionmarcador"
+        android:hint="@string/introduce_la_descripcion_del_marcador"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/nombremarcador"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+
+    <org.osmdroid.views.MapView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:id="@+id/mapa"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/botonañadir"
+        app:layout_constraintBottom_toTopOf="@id/nombremarcador"
+        />
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

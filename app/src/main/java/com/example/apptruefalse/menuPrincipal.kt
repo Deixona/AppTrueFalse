@@ -18,6 +18,8 @@ class menuPrincipal : AppCompatActivity() {
     lateinit var botonEstadisticas: Button
     lateinit var botonModoDificil: Button
     lateinit var botonMas: Button
+    lateinit var botonAtras: Button
+    var modoDificil: Boolean = false
 
     //aquí estoy creando un launcher
     val launcherJuego = registerForActivityResult(
@@ -47,46 +49,62 @@ class menuPrincipal : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-    var modoDificil: Boolean = false
 
-        botonJugar = findViewById<Button>(R.id.jugar)
-        botonEstadisticas = findViewById<Button>(R.id.estadisticas)
-        botonModoDificil = findViewById<Button>(R.id.jugardificil)
-        botonMas = findViewById<Button>(R.id.mas)
+        botonJugar = findViewById(R.id.jugar)
+        botonEstadisticas = findViewById(R.id.estadisticas)
+        botonModoDificil = findViewById(R.id.jugardificil)
+        botonMas = findViewById(R.id.mas)
+        botonAtras = findViewById(R.id.inicio)
 
-        botonJugar.setOnClickListener {
-            modoDificil = false
-            val irajugar = Intent(this, Buzz::class.java)
-            irajugar.putExtra("aciertos", aciertos)
-            irajugar.putExtra("fallos", fallos)
-            irajugar.putExtra("clicks", clicks)
-            irajugar.putExtra("modo", modoDificil)
-            //aqui uso el launcher q creé arriba para ir a la activity Buzz.kt
-            launcherJuego.launch(irajugar)
+        botonJugar.setOnClickListener(clickBoton)
+        botonEstadisticas.setOnClickListener(clickBoton)
+        botonModoDificil.setOnClickListener(clickBoton)
+        botonMas.setOnClickListener(clickBoton)
+        botonAtras.setOnClickListener(clickBoton)
+    }
+
+    val clickBoton = object: View.OnClickListener {
+        override fun onClick(view: View) {
+            if(view.id == R.id.jugar)
+            {
+                modoDificil = false
+                val irajugar = Intent(this@menuPrincipal, Buzz::class.java)
+                irajugar.putExtra("aciertos", aciertos)
+                irajugar.putExtra("fallos", fallos)
+                irajugar.putExtra("clicks", clicks)
+                irajugar.putExtra("modo", modoDificil)
+                //aqui uso el launcher q creé arriba para ir a la activity Buzz.kt
+                launcherJuego.launch(irajugar)
+            }
+            if(view.id == R.id.estadisticas)
+            {
+                val iraestadisticas = Intent(this@menuPrincipal, Stats::class.java)
+                iraestadisticas.putExtra("aciertos", aciertos)
+                iraestadisticas.putExtra("fallos", fallos)
+                iraestadisticas.putExtra("clicks", clicks)
+                startActivity(iraestadisticas)
+            }
+            if(view.id == R.id.jugardificil)
+            {
+                modoDificil = true
+                val irajugar = Intent(this@menuPrincipal, Buzz::class.java)
+                irajugar.putExtra("aciertos", aciertos)
+                irajugar.putExtra("fallos", fallos)
+                irajugar.putExtra("clicks", clicks)
+                irajugar.putExtra("modo", modoDificil)
+                //aqui uso el launcher q creé arriba para ir a la activity Buzz.kt
+                launcherJuego.launch(irajugar)
+            }
+            if(view.id == R.id.mas)
+            {
+                val iramas = Intent(this@menuPrincipal, SumarPreguntas::class.java)
+                startActivity(iramas)
+            }
+            if(view.id == R.id.inicio)
+            {
+                val iratras = Intent(this@menuPrincipal, WelcomeActivity::class.java)
+                startActivity(iratras)
+            }
         }
-
-        botonModoDificil.setOnClickListener {
-            modoDificil = true
-            val irajugar = Intent(this, Buzz::class.java)
-            irajugar.putExtra("aciertos", aciertos)
-            irajugar.putExtra("fallos", fallos)
-            irajugar.putExtra("clicks", clicks)
-            irajugar.putExtra("modo", modoDificil)
-            //aqui uso el launcher q creé arriba para ir a la activity Buzz.kt
-            launcherJuego.launch(irajugar)
-        }
-
-        botonEstadisticas.setOnClickListener {
-            val iraestadisticas = Intent(this, Stats::class.java)
-            iraestadisticas.putExtra("aciertos", aciertos)
-            iraestadisticas.putExtra("fallos", fallos)
-            iraestadisticas.putExtra("clicks", clicks)
-            startActivity(iraestadisticas)
-        }
-        botonMas.setOnClickListener {
-            val iramas = Intent(this, SumarPreguntas::class.java)
-            startActivity(iramas)
-        }
-
     }
 }

@@ -7,7 +7,39 @@
     <string name="botoninicio">Inicio</string>
     <string name="respuestacorrecta">¡Correcto!</string>
     <string name="respuestaincorrecta">Incorrecto. Vuelve a intentarlo.</string>
-    <string name="tiemporestante1">Te quedan  </string>
-    <string name="tiemporestante2"> segundos para responder.</string>
+    <string name="tiemporestante1">"Te quedan  "</string>
+    <string name="tiemporestante2">" segundos para responder".</string>
     <string name="nopregunta">Todavía no hay preguntas guardadas. Guarda primero una pregunta.</string>
+    <string name="prueba">bibibibibiibibib</string>
+    <string name="descripcionlalaguna">San Cristóbal de La Laguna, conocida popularmente como La Laguna, es una de las localidades más emblemáticas de la isla de Tenerife, situada en el archipiélago canario. Se caracteriza por su riqueza histórica, cultural y arquitectónica, así como por conservar un importante legado que la convierte en uno de los destinos más interesantes de las Islas Canarias. Su casco histórico fue declarado Patrimonio de la Humanidad por la UNESCO en 1999, gracias a su excelente estado de conservación y a su valor como ejemplo de ciudad colonial no amurallada.
+
+Pasear por sus calles es una oportunidad para descubrir edificios históricos, antiguas casas señoriales, iglesias, conventos y plazas que reflejan diferentes etapas de su historia. Entre sus principales atractivos turísticos destacan la Catedral de San Cristóbal de La Laguna, la Plaza del Adelantado, la Iglesia de Nuestra Señora de la Concepción, el antiguo Convento de San Agustín y el Palacio de Nava. Estos lugares permiten conocer mejor el patrimonio artístico y cultural de la localidad.
+
+Además de su riqueza monumental, La Laguna destaca por su ambiente universitario y juvenil, ya que alberga una de las universidades más importantes de Canarias. Esto contribuye a crear una atmósfera dinámica, con numerosas actividades culturales, comercios tradicionales, cafeterías y restaurantes donde se puede disfrutar de la gastronomía típica canaria.
+
+Otro de sus grandes atractivos es la conservación de sus tradiciones y fiestas populares, que forman parte de la identidad de sus habitantes. A lo largo del año se celebran diferentes eventos culturales y religiosos que atraen tanto a residentes como a visitantes.
+
+En definitiva, San Cristóbal de La Laguna es una localidad que combina historia, patrimonio, cultura y tradición con un ambiente moderno y acogedor. Su belleza arquitectónica, sus espacios históricos y su oferta cultural y gastronómica la convierten en un lugar imprescindible para quienes desean conocer la esencia de Tenerife y descubrir una parte fundamental de la historia de las Islas Canarias.</string>
+    <string name="a_adir_marcador">Añadir marcador</string>
+    <string name="introduce_el_nombre_del_marcador">Introduce el nombre del marcador</string>
+    <string name="introduce_la_descripcion_del_marcador">Introduce la descripcion del marcador</string>
+    <string name="accede_al_mapa">Accede al mapa</string>
+    <string name="pok_mon_quiz">Pokémon Quiz</string>
+    <string name="accede_al_municipio">Accede al municipio</string>
+    <string name="accede_al_mapa_interactivo">Accede al mapa interactivo</string>
+    <string name="eliminar_seleccion">Eliminar seleccion</string>
+    <string name="descripcionadelantado">Es una de las plazas más emblemáticas de San Cristóbal de La Laguna. Recibe su nombre de Alonso Fernández de Lugo, conquistador de Tenerife, que estableció aquí su residencia. Desde el siglo XVI fue el centro de la vida pública de la ciudad, acogiendo mercados, fiestas, procesiones y otros actos. Destaca su fuente central de mármol, instalada en 1870.</string>
+    <string name="descripcionmuseo">Inaugurado el 11 de mayo de 1993, este museo nació gracias a la colaboración entre el Instituto de Astrofísica de Canarias y el Cabildo de Tenerife. Su objetivo es acercar la ciencia al público de una forma divertida e interactiva, permitiendo experimentar con fenómenos relacionados con la física, la biología, la tecnología y, especialmente, la astronomía. Entre sus principales atractivos destacan el planetario y la gran antena de radiotelescopio situada en el exterior. Es un espacio donde aprender ciencia tocando, experimentando y jugando.</string>
+    <string name="descripcionconcepcion">Con sus 28 metros de altura, es uno de los símbolos más reconocibles de La Laguna. Pertenece a la Iglesia de Nuestra Señora de la Concepción, considerada la primera parroquia fundada en Tenerife. La torre actual fue construida entre 1694 y 1697 y destaca por su arquitectura de estilo toscano. Desde su parte superior se pueden contemplar unas magníficas vistas del casco histórico.</string>
+    <string name="descripcionamaro">En la iglesia de Santo Domingo se encuentra la tumba de Amaro Rodríguez Felipe, conocido popularmente como Amaro Pargo. Nacido en La Laguna en 1678, fue uno de los corsarios más famosos de Canarias y llegó a acumular una enorme fortuna. Su vida estuvo rodeada de historias y leyendas, especialmente por los rumores sobre un supuesto tesoro escondido. Sus restos descansan en una cripta situada junto a la entrada del templo.</string>
+    <string name="galer_a_de_im_genes">Galería de Imágenes</string>
+
+
+    <string-array name="lugares">
+        <item>Plaza del Adelantado</item>
+        <item>Antigua estación de guaguas</item>
+        <item>Torre de la Concepción</item>
+        <item>Tumba de Amaro Pargo</item>
+    </string-array>
+
 </resources>
